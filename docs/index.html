@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>CatHideOuts</title>
+</head>
+<body>
+    <h1>Welcome to CatHideOuts</h1>
+
+    <div class="sound-item">
+        <h3>カッコいい戦闘BGM</h3>
+        <a href="https://github.com/ユーザー名/リポジトリ名/releases/download/タグ名/bgm_01.mp3" class="download-btn">
+            ダウンロード (MP3)
+        </a>
+        <p>ダウンロード数: <span id="count-bgm-01">集計中...</span>回</p>
+    </div>
+
+    <script>
+        // GitHub APIからダウンロード数を取得する関数
+        async function fetchDownloadCounts() {
+            const user = 'ユーザー名';
+            const repo = 'リポジトリ名';
+            const apiUrl = `https://api.github.com/repos/${user}/${repo}/releases`;
+
+            try {
+                const response = await fetch(apiUrl);
+                const data = await response.json();
+
+                // 全リリースを走査
+                data.forEach(release => {
+                    release.assets.forEach(asset => {
+                        // ファイル名でマッチングさせる例
+                        if (asset.name === 'bgm_01.mp3') {
+                            document.getElementById('count-bgm-01').textContent = asset.download_count;
+                        }
+                    });
+                });
+            } catch (error) {
+                console.error('API取得エラー:', error);
+            }
+        }
+
+        fetchDownloadCounts();
+    </script>
+</body>
+</html>
