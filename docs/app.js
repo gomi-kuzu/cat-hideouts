@@ -6,8 +6,8 @@
 //  設定: GitHub の情報をここに入力
 // ──────────────────────────────────────────────
 const CONFIG = {
-    githubUser: 'ユーザー名',       // ← GitHubのユーザー名に変更
-    githubRepo: 'cat-hideouts',    // ← GitHubのリポジトリ名に変更
+    githubUser: 'gomi-kuzu',
+    githubRepo: 'cat-hideouts',
 };
 
 // ──────────────────────────────────────────────
