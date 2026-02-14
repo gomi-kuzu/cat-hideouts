@@ -2,45 +2,170 @@
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
-    <title>CatHideOuts</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CatHideOuts — Free Sound Library</title>
+    <meta name="description" content="CatHideOuts - フリー音源ライブラリ。場面や感情に合わせた高品質BGMを無料配布。">
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Noto+Sans+JP:wght@300;400;500;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <h1>Welcome to CatHideOuts</h1>
 
-    <div class="sound-item">
-        <h3>カッコいい戦闘BGM</h3>
-        <a href="https://github.com/ユーザー名/リポジトリ名/releases/download/タグ名/bgm_01.mp3" class="download-btn">
-            ダウンロード (MP3)
-        </a>
-        <p>ダウンロード数: <span id="count-bgm-01">集計中...</span>回</p>
-    </div>
+    <!-- ========== HEADER ========== -->
+    <header class="site-header">
+        <div class="header-inner">
+            <a href="#" class="logo">
+                <span class="logo-icon">🐾</span>
+                <span class="logo-text">Cat<span class="accent">Hide</span>Outs</span>
+            </a>
+            <nav class="global-nav">
+                <a href="#library">ライブラリ</a>
+                <a href="#about">このサイトについて</a>
+                <a href="#license">利用規約</a>
+            </nav>
+            <button class="mobile-menu-btn" aria-label="メニューを開く">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </header>
 
-    <script>
-        // GitHub APIからダウンロード数を取得する関数
-        async function fetchDownloadCounts() {
-            const user = 'ユーザー名';
-            const repo = 'リポジトリ名';
-            const apiUrl = `https://api.github.com/repos/${user}/${repo}/releases`;
+    <!-- ========== HERO ========== -->
+    <section class="hero">
+        <div class="hero-bg"></div>
+        <div class="hero-content">
+            <p class="hero-sub">Free Sound Library</p>
+            <h1 class="hero-title">
+                あなたの作品に、<br>
+                <span class="accent">音の隠れ家</span>を。
+            </h1>
+            <p class="hero-desc">
+                CatHideOutsは、フリー音源ライブラリです。<br>
+                場面や感情に合わせたBGM &amp; SEを無料で配布しています。<br>
+                音源は随時追加していきます。
+            </p>
+            <a href="#library" class="btn btn-primary">
+                <span>ライブラリを見る</span>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+            </a>
+        </div>
+        <!-- floating notes decoration -->
+        <div class="hero-deco hero-deco--1">♪</div>
+        <div class="hero-deco hero-deco--2">♫</div>
+        <div class="hero-deco hero-deco--3">🐈</div>
+    </section>
 
-            try {
-                const response = await fetch(apiUrl);
-                const data = await response.json();
+    <!-- ========== LIBRARY ========== -->
+    <section id="library" class="library">
+        <div class="container">
+            <h2 class="section-title">Sound Library</h2>
+            <p class="section-subtitle">場面や感情からBGMを探そう</p>
 
-                // 全リリースを走査
-                data.forEach(release => {
-                    release.assets.forEach(asset => {
-                        // ファイル名でマッチングさせる例
-                        if (asset.name === 'bgm_01.mp3') {
-                            document.getElementById('count-bgm-01').textContent = asset.download_count;
-                        }
-                    });
-                });
-            } catch (error) {
-                console.error('API取得エラー:', error);
-            }
-        }
+            <!-- Category Filter -->
+            <div class="category-filter">
+                <button class="filter-btn active" data-category="all">
+                    <span class="filter-icon">🎵</span> すべて
+                </button>
+                <button class="filter-btn" data-category="battle">
+                    <span class="filter-icon">⚔️</span> バトル
+                </button>
+                <button class="filter-btn" data-category="adventure">
+                    <span class="filter-icon">🗺️</span> 冒険・フィールド
+                </button>
+                <button class="filter-btn" data-category="calm">
+                    <span class="filter-icon">🌿</span> 穏やか・日常
+                </button>
+                <button class="filter-btn" data-category="sad">
+                    <span class="filter-icon">🌧️</span> 悲しみ・切なさ
+                </button>
+                <button class="filter-btn" data-category="tension">
+                    <span class="filter-icon">💀</span> 緊張・ホラー
+                </button>
+                <button class="filter-btn" data-category="happy">
+                    <span class="filter-icon">✨</span> 喜び・勝利
+                </button>
+                <button class="filter-btn" data-category="mysterious">
+                    <span class="filter-icon">🔮</span> 神秘・幻想
+                </button>
+            </div>
 
-        fetchDownloadCounts();
-    </script>
+            <!-- Track Grid -->
+            <div class="track-grid" id="trackGrid">
+                <!-- トラックカードはJSで動的に生成されます -->
+            </div>
+
+            <div class="empty-state" id="emptyState" style="display: none;">
+                <p>🐾 このカテゴリにはまだ曲がありません</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== ABOUT ========== -->
+    <section id="about" class="about">
+        <div class="container">
+            <h2 class="section-title">About</h2>
+            <div class="about-grid">
+                <div class="about-card">
+                    <div class="about-icon">♫</div>
+                    <h3>場面を彩る音源</h3>
+                    <p>短くループしやすいBGMを中心に、さまざまなシーンに合う音源を制作しています。</p>
+                </div>
+                <div class="about-card">
+                    <div class="about-icon">🆓</div>
+                    <h3>完全無料</h3>
+                    <p>すべての音源は無料でダウンロードできます。個人・商用問わずご利用いただけます。</p>
+                </div>
+                <!-- <div class="about-card">
+                    <div class="about-icon">📦</div>
+                    <h3>高品質MP3</h3>
+                    <p>GitHub Releasesを通じて安定した配信を実現。いつでも安心してダウンロードできます。</p>
+                </div> -->
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== LICENSE ========== -->
+    <section id="license" class="license">
+        <div class="container">
+            <h2 class="section-title">利用規約</h2>
+            <div class="license-content">
+                <div class="license-ok">
+                    <h3>✅ できること</h3>
+                    <ul>
+                        <li>個人・商用問わず作品での使用</li>
+                        <li>動画・配信・ゲーム等でのBGMとしての使用</li>
+                        <li>加工・編集しての使用</li>
+                    </ul>
+                </div>
+                <div class="license-ng">
+                    <h3>❌ できないこと</h3>
+                    <ul>
+                        <li>音源そのものの再配布・転売</li>
+                        <li>自作発言</li>
+                        <li>音源単体でのコンテンツ化</li>
+                    </ul>
+                </div>
+            </div>
+            <p class="license-note">※ クレジット表記は任意ですが、記載いただけると励みになります 🐱</p>
+        </div>
+    </section>
+
+    <!-- ========== FOOTER ========== -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-inner">
+                <p class="footer-logo">🐾 CatHideOuts</p>
+                <p class="footer-copy">&copy; 2026 CatHideOuts. All sounds are free to use.</p>
+                <div class="footer-links">
+                    <a href="https://github.com/ユーザー名/cat-hideouts" target="_blank" rel="noopener">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61-.546-1.385-1.335-1.755-1.335-1.755-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.605-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 21.795 24 17.295 24 12c0-6.63-5.37-12-12-12z"/></svg>
+                        GitHub
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="app.js"></script>
 </body>
 </html>
