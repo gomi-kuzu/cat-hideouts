@@ -111,9 +111,14 @@ function createTrackCard(track, index) {
             <span class="track-category-badge">${CATEGORIES[track.category] || track.category}</span>
         </div>
         <div class="track-player">
-            <audio controls preload="none">
+            <audio controls preload="none" id="audio-${track.id}">
                 <source src="${downloadUrl}" type="audio/mpeg">
             </audio>
+        </div>
+        <div class="track-controls">
+            <button class="btn btn-sm btn-loop" data-track-id="${track.id}" title="ループ再生">
+                🔁 ループ
+            </button>
         </div>
         <div class="track-actions">
             <span class="download-count" id="count-${track.id}">
@@ -124,6 +129,16 @@ function createTrackCard(track, index) {
             </a>
         </div>
     `;
+
+    // ループボタンのイベントリスナーを追加
+    const loopBtn = card.querySelector('.btn-loop');
+    const audio = card.querySelector('audio');
+    
+    loopBtn.addEventListener('click', () => {
+        audio.loop = !audio.loop;
+        loopBtn.classList.toggle('active', audio.loop);
+        loopBtn.title = audio.loop ? 'ループ再生: ON' : 'ループ再生: OFF';
+    });
 
     return card;
 }
