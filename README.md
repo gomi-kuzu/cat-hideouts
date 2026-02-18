@@ -1,6 +1,6 @@
 # 🐾 CatHideOuts
 
-フリー音源ライブラリ — あなたの作品に、音の隠れ家を。
+フリー音源ライブラリ — どこか懐かしい、音の隠れ家
 
 **🌐 Website**: [https://gomi-kuzu.github.io/cat-hideouts/](https://gomi-kuzu.github.io/cat-hideouts/)
 
@@ -11,7 +11,7 @@
 CatHideOutsは、場面や感情に合わせたBGM・効果音を無料で配布するフリー音源ライブラリです。  
 ゲーム、動画、配信など、あらゆる創作活動にご利用いただけます。
 
-新しい音源を随時追加していきます。
+新しい音源を随時追加予定。
 
 ---
 
