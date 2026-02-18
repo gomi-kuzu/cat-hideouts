@@ -17,7 +17,7 @@ CatHideOutsは、場面や感情に合わせたBGM・効果音を無料で配布
 
 ## 📥 Download
 
-音源ファイルは [Releases](https://github.com/gomi-kuzu/cat-hideouts/releases) からダウンロードできます。
+音源ファイルはWebページのほか、 [Releases](https://github.com/gomi-kuzu/cat-hideouts/releases) からもダウンロードできます。
 
 ---
 
