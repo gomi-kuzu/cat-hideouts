@@ -33,65 +33,59 @@ const TRACKS = [
         id: 'bgm_battle_01',
         title: '灼熱の決戦',
         category: 'battle',
-        fileName: 'bgm_battle_01.mp3',  // GitHub Releaseにアップするファイル名
-        releaseTag: 'v1.0.0',           // GitHubリリースのタグ名
+        fileName: 'bgm_battle_01.mp3',  // GitHub Releaseにアップするファイル名（リリースタグはファイル名から自動生成）
     },
     {
         id: 'bgm_battle_02',
         title: '迫りくる脅威',
         category: 'battle',
         fileName: 'bgm_battle_02.mp3',
-        releaseTag: 'v1.0.0',
     },
     {
         id: 'bgm_adventure_01',
         title: '未知への旅路',
         category: 'adventure',
         fileName: 'bgm_adventure_01.mp3',
-        releaseTag: 'v1.0.0',
     },
     {
         id: 'bgm_calm_01',
         title: '木漏れ日の午後',
         category: 'calm',
         fileName: 'bgm_calm_01.mp3',
-        releaseTag: 'v1.0.0',
     },
     {
         id: 'bgm_sad_01',
         title: '遠い記憶',
         category: 'sad',
         fileName: 'bgm_sad_01.mp3',
-        releaseTag: 'v1.0.0',
     },
     {
         id: 'bgm_tension_01',
         title: '深淵の気配',
         category: 'tension',
         fileName: 'bgm_tension_01.mp3',
-        releaseTag: 'v1.0.0',
     },
     {
         id: 'bgm_happy_01',
         title: '歓喜のファンファーレ',
         category: 'happy',
         fileName: 'bgm_happy_01.mp3',
-        releaseTag: 'v1.0.0',
     },
     {
         id: 'bgm_mysterious_01',
         title: '星降る聖域',
         category: 'mysterious',
         fileName: 'bgm_mysterious_01.mp3',
-        releaseTag: 'v1.0.0',
     },
 ];
 
 // ──────────────────────────────────────────────
 //  ダウンロードURL生成
+//  リリースタグはファイル名（拡張子なし）と同じ
 // ──────────────────────────────────────────────
 function getDownloadUrl(track) {
-    return `https://github.com/${CONFIG.githubUser}/${CONFIG.githubRepo}/releases/download/${track.releaseTag}/${track.fileName}`;
+    const releaseTag = track.fileName.replace(/\.[^.]+$/, ''); // 拡張子を除去
+    return `https://github.com/${CONFIG.githubUser}/${CONFIG.githubRepo}/releases/download/${releaseTag}/${track.fileName}`;
 }
 
 // ──────────────────────────────────────────────
