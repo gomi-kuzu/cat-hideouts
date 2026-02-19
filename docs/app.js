@@ -30,53 +30,53 @@ const CATEGORIES = {
 const TRACKS = [
     // --- サンプルデータ（実際の曲ができたら差し替えてください）---
     {
-        id: 'bgm_battle_01',
-        title: '灼熱の決戦',
-        category: 'battle',
-        fileName: 'bgm_battle_01.mp3',  // GitHub Releaseにアップするファイル名（リリースタグはファイル名から自動生成）
-    },
-    {
-        id: 'bgm_battle_02',
-        title: '迫りくる脅威',
-        category: 'battle',
-        fileName: 'bgm_battle_02.mp3',
-    },
-    {
-        id: 'bgm_adventure_01',
-        title: '未知への旅路',
-        category: 'adventure',
-        fileName: 'bgm_adventure_01.mp3',
-    },
-    {
-        id: 'bgm_calm_01',
-        title: '木漏れ日の午後',
-        category: 'calm',
-        fileName: 'bgm_calm_01.mp3',
-    },
-    {
-        id: 'bgm_sad_01',
-        title: '遠い記憶',
+        id: '001_fuan01',
+        title: '不安１',
         category: 'sad',
-        fileName: 'bgm_sad_01.mp3',
+        fileName: '001_fuan01.wav',  // GitHub Releaseにアップするファイル名（リリースタグはファイル名から自動生成）
     },
     {
-        id: 'bgm_tension_01',
-        title: '深淵の気配',
-        category: 'tension',
-        fileName: 'bgm_tension_01.mp3',
+        id: '002_tansaku01',
+        title: '探索１',
+        category: 'adventure',
+        fileName: '002_tansaku01.wav',
     },
     {
-        id: 'bgm_happy_01',
-        title: '歓喜のファンファーレ',
-        category: 'happy',
-        fileName: 'bgm_happy_01.mp3',
+        id: '003_tansaku02',
+        title: '探索２',
+        category: 'calm',
+        fileName: '003_tansaku02.wav',
     },
     {
-        id: 'bgm_mysterious_01',
-        title: '星降る聖域',
-        category: 'mysterious',
-        fileName: 'bgm_mysterious_01.mp3',
+        id: '004_kyouki01',
+        title: '狂気１',
+        category: 'battle',
+        fileName: '004_kyouki01.wav',
     },
+    {
+        id: '005_relax01',
+        title: 'リラックス１',
+        category: 'calm',
+        fileName: '005_relax01.wav',
+    },
+    {
+        id: '006_kansatsu01',
+        title: '観察１',
+        category: 'adventure',
+        fileName: '006_kansatsu01.wav',
+    },
+    // {
+    //     id: 'bgm_happy_01',
+    //     title: '歓喜のファンファーレ',
+    //     category: 'happy',
+    //     fileName: 'bgm_happy_01.mp3',
+    // },
+    // {
+    //     id: 'bgm_mysterious_01',
+    //     title: '星降る聖域',
+    //     category: 'mysterious',
+    //     fileName: 'bgm_mysterious_01.mp3',
+    // },
 ];
 
 // ──────────────────────────────────────────────
@@ -111,7 +111,7 @@ function createTrackCard(track, index) {
         </div>
         <div class="track-controls">
             <button class="btn btn-sm btn-loop" data-track-id="${track.id}" title="ループ再生">
-                🔁 ループ
+                🔄 ループ再生
             </button>
         </div>
         <div class="track-actions">
