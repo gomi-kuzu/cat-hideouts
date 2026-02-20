@@ -80,6 +80,22 @@ const TRACKS = [
 ];
 
 // ──────────────────────────────────────────────
+//  ソート・日付の状態
+// ──────────────────────────────────────────────
+let currentCategory = 'all';
+let sortOrder = 'desc'; // 'desc' = 新しい順, 'asc' = 古い順
+
+// dateMap は localStorage からリストア（初期表示から NEW! を出すため）
+const DATE_MAP_KEY = 'cathideouts_dateMap';
+const dateMap = (() => {
+    try {
+        return JSON.parse(localStorage.getItem(DATE_MAP_KEY)) || {};
+    } catch {
+        return {};
+    }
+})();
+
+// ──────────────────────────────────────────────
 //  ダウンロードURL生成
 //  リリースタグはファイル名（拡張子なし）と同じ
 // ──────────────────────────────────────────────
@@ -89,10 +105,28 @@ function getDownloadUrl(track) {
 }
 
 // ──────────────────────────────────────────────
+//  日付フォーマット（YYYY/MM/DD）
+// ──────────────────────────────────────────────
+function formatDate(isoString) {
+    if (!isoString) return null;
+    const d = new Date(isoString);
+    const y = d.getFullYear();
+    const m = String(d.getMonth() + 1).padStart(2, '0');
+    const day = String(d.getDate()).padStart(2, '0');
+    return `${y}/${m}/${day}`;
+}
+
+// ──────────────────────────────────────────────
 //  トラックカードHTML生成
 // ──────────────────────────────────────────────
 function createTrackCard(track, index) {
     const downloadUrl = getDownloadUrl(track);
+    const uploadDate = formatDate(dateMap[track.fileName]);
+    const isNew = (() => {
+        const d = dateMap[track.fileName];
+        if (!d) return false;
+        return (Date.now() - new Date(d).getTime()) < 3 * 24 * 60 * 60 * 1000;
+    })();
 
     const card = document.createElement('div');
     card.className = 'track-card';
@@ -101,7 +135,7 @@ function createTrackCard(track, index) {
 
     card.innerHTML = `
         <div class="track-header">
-            <h3 class="track-title">${track.title}</h3>
+            <h3 class="track-title">${track.title}${isNew ? ' <span class="badge-new">NEW!</span>' : ''}</h3>
             <span class="track-category-badge">${CATEGORIES[track.category] || track.category}</span>
         </div>
         <div class="track-player">
@@ -115,9 +149,10 @@ function createTrackCard(track, index) {
             </button>
         </div>
         <div class="track-actions">
-            <span class="download-count" id="count-${track.id}">
-                📥 集計中...
-            </span>
+            <div class="track-info">
+                <span class="download-count" id="count-${track.id}">📥 集計中...</span>
+                <span class="track-date">${uploadDate ? `📅 ${uploadDate}` : ''}</span>
+            </div>
             <a href="${downloadUrl}" class="btn btn-sm btn-download" download>
                 ⬇ ダウンロード
             </a>
@@ -141,13 +176,21 @@ function createTrackCard(track, index) {
 //  トラック一覧の描画
 // ──────────────────────────────────────────────
 function renderTracks(category = 'all') {
+    currentCategory = category;
     const grid = document.getElementById('trackGrid');
     const emptyState = document.getElementById('emptyState');
     grid.innerHTML = '';
 
-    const filtered = category === 'all'
-        ? TRACKS
+    let filtered = category === 'all'
+        ? [...TRACKS]
         : TRACKS.filter(t => t.category === category);
+
+    // 日付順ソート（dateMap が空の場合は元の順序を維持）
+    filtered.sort((a, b) => {
+        const dateA = dateMap[a.fileName] ? new Date(dateMap[a.fileName]).getTime() : 0;
+        const dateB = dateMap[b.fileName] ? new Date(dateMap[b.fileName]).getTime() : 0;
+        return sortOrder === 'desc' ? dateB - dateA : dateA - dateB;
+    });
 
     if (filtered.length === 0) {
         emptyState.style.display = 'block';
@@ -194,7 +237,7 @@ async function fetchDownloadCounts() {
 
         const releases = await response.json();
 
-        // ファイル名 → ダウンロード数のマップを作成
+        // ファイル名 → ダウンロード数・アップロード日のマップを作成
         const countMap = {};
         releases.forEach(release => {
             release.assets.forEach(asset => {
@@ -204,8 +247,18 @@ async function fetchDownloadCounts() {
                 } else {
                     countMap[asset.name] = asset.download_count;
                 }
+                // アップロード日は最も古い日付を採用
+                if (!dateMap[asset.name] || asset.created_at < dateMap[asset.name]) {
+                    dateMap[asset.name] = asset.created_at;
+                }
             });
         });
+
+        // dateMap をキャッシュとして保存
+        try { localStorage.setItem(DATE_MAP_KEY, JSON.stringify(dateMap)); } catch {}
+
+        // 日付情報が揃ったので再描画（ソート・日付表示に反映）
+        renderTracks(currentCategory);
 
         // 各トラックのカウントを更新
         TRACKS.forEach(track => {
@@ -270,11 +323,38 @@ function initScrollEffect() {
 }
 
 // ──────────────────────────────────────────────
+//  ソートトグル
+// ──────────────────────────────────────────────
+function initSortToggle() {
+    const btn = document.getElementById('sortToggle');
+    if (!btn) return;
+
+    function updateButton() {
+        const label = btn.querySelector('.sort-label');
+        const arrow = btn.querySelector('.sort-arrow');
+        if (sortOrder === 'desc') {
+            label.textContent = '新しい順';
+            arrow.textContent = '▼';
+        } else {
+            label.textContent = '古い順';
+            arrow.textContent = '▲';
+        }
+    }
+
+    btn.addEventListener('click', () => {
+        sortOrder = sortOrder === 'desc' ? 'asc' : 'desc';
+        updateButton();
+        renderTracks(currentCategory);
+    });
+}
+
+// ──────────────────────────────────────────────
 //  初期化
 // ──────────────────────────────────────────────
 document.addEventListener('DOMContentLoaded', () => {
     renderTracks();
     initCategoryFilter();
+    initSortToggle();
     initMobileMenu();
     initScrollEffect();
     fetchDownloadCounts();
