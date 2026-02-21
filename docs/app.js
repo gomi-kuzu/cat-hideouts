@@ -65,18 +65,18 @@ const TRACKS = [
         category: 'adventure',
         fileName: '006_kansatsu01.wav',
     },
-    // {
-    //     id: 'bgm_happy_01',
-    //     title: '歓喜のファンファーレ',
-    //     category: 'happy',
-    //     fileName: 'bgm_happy_01.mp3',
-    // },
-    // {
-    //     id: 'bgm_mysterious_01',
-    //     title: '星降る聖域',
-    //     category: 'mysterious',
-    //     fileName: 'bgm_mysterious_01.mp3',
-    // },
+    {
+        id: '007_happiness01',
+        title: 'ハピネス１',
+        category: 'happy',
+        fileName: '007_happiness01.wav',
+    },
+    {
+        id: '008_fanfare01',
+        title: 'ファンファーレ１',
+        category: 'happy',
+        fileName: '008_fanfare01.wav',
+    },
 ];
 
 // ──────────────────────────────────────────────
