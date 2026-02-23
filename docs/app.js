@@ -77,6 +77,18 @@ const TRACKS = [
         category: 'happy',
         fileName: '008_fanfare01.wav',
     },
+    {
+        id: '009_gekko01',
+        title: '月光１',
+        category: 'mysterious',
+        fileName: '009_gekko01.wav',
+    },
+    {
+        id: `010_hushinkan01`,
+        title: '不信感１',
+        category: 'tension',
+        fileName: '010_hushinkan01.wav',
+    },
 ];
 
 // ──────────────────────────────────────────────
