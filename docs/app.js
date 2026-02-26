@@ -89,7 +89,7 @@ const TRACKS = [
         category: 'tension',
         fileName: '010_hushinkan01.wav',
     },
-        {
+    {
         id: `011_gimon01`,
         title: '疑問１',
         category: 'tension',
