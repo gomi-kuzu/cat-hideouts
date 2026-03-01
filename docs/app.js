@@ -95,6 +95,18 @@ const TRACKS = [
         category: 'tension',
         fileName: '011_gimon01.wav',
     },
+    {
+        id: `012_dasaku01`,
+        title: '駄作１',
+        category: 'battle',
+        fileName: '012_dasaku01.wav',
+    },
+    {
+        id: `013_bouken01`,
+        title: '冒険１',
+        category: 'adventure',
+        fileName: '013_bouken01.wav',
+    },
 ];
 
 // ──────────────────────────────────────────────
