@@ -107,6 +107,12 @@ const TRACKS = [
         category: 'adventure',
         fileName: '013_bouken01.wav',
     },
+    {
+        id: `014_madoromi01`,
+        title: '微睡１',
+        category: 'calm',
+        fileName: '014_madoromi01.wav',
+    },
 ];
 
 // ──────────────────────────────────────────────
