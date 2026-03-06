@@ -110,7 +110,7 @@ const TRACKS = [
     {
         id: `014_madoromi01`,
         title: '微睡１',
-        category: 'calm',
+        category: 'mysterious',
         fileName: '014_madoromi01.wav',
     },
 ];
