@@ -113,6 +113,12 @@ const TRACKS = [
         category: 'mysterious',
         fileName: '014_madoromi01.wav',
     },
+    {
+        id: `015_yoake01`,
+        title: '夜明け１',
+        category: 'mysterious',
+        fileName: '015_yoake01.wav',
+    },
 ];
 
 // ──────────────────────────────────────────────
