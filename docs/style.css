@@ -880,3 +880,48 @@ img {
         padding: 1.2rem;
     }
 }
+
+/* ============================================
+   SECRET CARD (About Section)
+   ============================================ */
+.about-card--secret {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px dashed var(--border);
+    background: var(--bg-card);
+    cursor: pointer;
+    text-decoration: none;
+    min-height: 160px;
+}
+
+.about-card--secret:hover {
+    border-color: var(--accent);
+    background: var(--bg-card-hover);
+    transform: translateY(-4px);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+}
+
+.about-card--secret:hover .secret-icon {
+    color: var(--accent);
+    text-shadow: 0 0 20px var(--accent-glow);
+    animation: secret-pulse 1.2s ease-in-out infinite;
+}
+
+.secret-icon {
+    font-size: 3rem;
+    font-weight: 700;
+    color: var(--text-muted);
+    transition: all var(--transition);
+    user-select: none;
+}
+
+@keyframes secret-pulse {
+    0%, 100% { transform: scale(1); opacity: 0.8; }
+    50% { transform: scale(1.15); opacity: 1; }
+}
+
+.nav-game {
+    color: var(--accent) !important;
+    font-weight: 600 !important;
+}
