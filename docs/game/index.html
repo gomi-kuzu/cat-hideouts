@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>隠れ家 — CatHideOuts</title>
+    <meta name="description" content="CatHideOutsの隠れ家。ブラウザで遊べるミニゲームのギャラリー。">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Noto+Sans+JP:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --bg-primary: #0e0e12;
+            --bg-secondary: #16161d;
+            --bg-card: #1c1c27;
+            --bg-card-hover: #22222f;
+            --border: #2e2e42;
+            --text-primary: #e8e8f0;
+            --text-secondary: #9d9db5;
+            --text-muted: #6b6b85;
+            --accent: #c084fc;
+            --accent-light: #d8b4fe;
+            --accent-dark: #9333ea;
+            --accent-glow: rgba(192, 132, 252, 0.25);
+            --font-en: 'Outfit', sans-serif;
+            --font-ja: 'Noto Sans JP', sans-serif;
+            --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: var(--font-ja);
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.7;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        a { color: var(--accent-light); text-decoration: none; transition: color var(--transition); }
+        a:hover { color: var(--accent); }
+
+        /* ── Header ── */
+        .site-header {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: rgba(14, 14, 18, 0.9);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-bottom: 1px solid var(--border);
+        }
+        .header-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 64px;
+        }
+        .logo {
+            display: flex; align-items: center; gap: 0.5rem;
+            font-family: var(--font-en); font-weight: 700; font-size: 1.3rem;
+            color: var(--text-primary); text-decoration: none;
+        }
+        .logo:hover { color: var(--text-primary); }
+        .logo-icon { font-size: 1.5rem; }
+        .logo .accent { color: var(--accent); }
+
+        .nav-links { display: flex; gap: 1.5rem; align-items: center; }
+        .nav-links a {
+            color: var(--text-secondary); font-size: 0.9rem; font-weight: 500;
+        }
+        .nav-links a:hover { color: var(--text-primary); }
+
+        /* ── Gallery Page ── */
+        .gallery-page {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 3rem 1.5rem;
+            max-width: 900px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        /* ── Entrance ── */
+        .entrance {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .entrance-cat {
+            font-size: 3rem;
+            margin-bottom: 0.8rem;
+            display: inline-block;
+            animation: sway 3s ease-in-out infinite;
+        }
+
+        @keyframes sway {
+            0%, 100% { transform: rotate(-3deg); }
+            50% { transform: rotate(3deg); }
+        }
+
+        .entrance h1 {
+            font-family: var(--font-ja);
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: var(--text-secondary);
+            margin-bottom: 0.4rem;
+        }
+
+        .entrance h1 .glow {
+            background: linear-gradient(135deg, var(--accent-light), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .entrance p {
+            color: var(--text-muted);
+            font-size: 0.82rem;
+        }
+
+        /* ── Game Grid ── */
+        .game-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 1.2rem;
+            width: 100%;
+        }
+
+        /* ── Game Window ── */
+        .game-window {
+            position: relative;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            overflow: hidden;
+            transition: all var(--transition);
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* タイトルバー */
+        .window-titlebar {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            padding: 8px 12px;
+            background: var(--bg-secondary);
+            border-bottom: 1px solid var(--border);
+            user-select: none;
+        }
+
+        .window-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--text-muted);
+            opacity: 0.4;
+        }
+
+        .window-dot--close { background: #f87171; opacity: 0.7; }
+        .window-dot--mini  { background: #fbbf24; opacity: 0.7; }
+        .window-dot--full  { background: #4ade80; opacity: 0.7; }
+
+        .window-title {
+            font-family: var(--font-en);
+            font-size: 0.7rem;
+            font-weight: 500;
+            color: var(--text-muted);
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* ウインドウ本体 */
+        .window-body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem 1rem;
+            min-height: 180px;
+            text-decoration: none;
+            color: inherit;
+            cursor: pointer;
+        }
+
+        .window-icon {
+            font-size: 2.4rem;
+            margin-bottom: 0.8rem;
+            transition: transform var(--transition);
+        }
+
+        .window-name {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 0.3rem;
+            text-align: center;
+        }
+
+        .window-desc {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            text-align: center;
+            line-height: 1.5;
+        }
+
+        /* プレイ可能なウインドウ */
+        .game-window--playable:hover {
+            border-color: var(--accent);
+            background: var(--bg-card-hover);
+            transform: translateY(-4px);
+            box-shadow: 0 8px 28px rgba(0, 0, 0, 0.35), 0 0 0 1px var(--accent-glow);
+        }
+
+        .game-window--playable:hover .window-icon {
+            transform: scale(1.15);
+        }
+
+        .game-window--playable:hover .window-dot--close { opacity: 1; }
+        .game-window--playable:hover .window-dot--mini  { opacity: 1; }
+        .game-window--playable:hover .window-dot--full  { opacity: 1; }
+
+        .game-window--playable .window-body::after {
+            content: '▶ PLAY';
+            display: block;
+            margin-top: 1rem;
+            font-family: var(--font-en);
+            font-size: 0.7rem;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            color: var(--accent);
+            opacity: 0;
+            transform: translateY(4px);
+            transition: all var(--transition);
+        }
+
+        .game-window--playable:hover .window-body::after {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Coming Soon ウインドウ */
+        .game-window--soon {
+            opacity: 0.5;
+        }
+
+        .game-window--soon .window-body {
+            cursor: default;
+        }
+
+        .window-soon-badge {
+            display: inline-block;
+            margin-top: 0.8rem;
+            font-family: var(--font-en);
+            font-size: 0.65rem;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            color: var(--text-muted);
+            padding: 3px 10px;
+            border: 1px dashed var(--border);
+            border-radius: 4px;
+        }
+
+        /* ── Footer ── */
+        .site-footer {
+            text-align: center;
+            padding: 2rem 1rem;
+            border-top: 1px solid var(--border);
+            color: var(--text-muted);
+            font-size: 0.8rem;
+        }
+        .site-footer a { color: var(--text-secondary); }
+        .site-footer a:hover { color: var(--accent); }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.3rem;
+            color: var(--text-muted);
+            font-size: 0.8rem;
+            margin-top: 0.5rem;
+        }
+
+        /* ── Responsive ── */
+        @media (max-width: 600px) {
+            .gallery-page { padding: 2rem 1rem; }
+            .game-grid {
+                grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+                gap: 0.8rem;
+            }
+            .window-body { padding: 1.5rem 0.8rem; min-height: 150px; }
+            .window-icon { font-size: 2rem; }
+            .entrance-cat { font-size: 2.5rem; }
+            .entrance h1 { font-size: 1.2rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ========== HEADER ========== -->
+    <header class="site-header">
+        <div class="header-inner">
+            <a href="../" class="logo">
+                <span class="logo-icon">🐾</span>
+                <span class="logo-text">Cat<span class="accent">Hide</span>Outs</span>
+            </a>
+            <nav class="nav-links">
+                <a href="../">🎵 ライブラリ</a>
+                <a href="../#about">About</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- ========== GALLERY ========== -->
+    <main class="gallery-page">
+
+        <div class="entrance">
+            <div class="entrance-cat">🐈‍⬛</div>
+            <p>やあ、この部屋には音源の使用例が転がっているよ</p>
+        </div>
+
+        <div class="game-grid">
+
+            <!-- ═══════ Game 1: Shell Game (playable) ═══════ -->
+            <div class="game-window game-window--playable">
+                <div class="window-titlebar">
+                    <span class="window-dot window-dot--close"></span>
+                    <span class="window-dot window-dot--mini"></span>
+                    <span class="window-dot window-dot--full"></span>
+                    <span class="window-title">shell_game.py</span>
+                </div>
+                <a href="shell-game/" class="window-body">
+                    <div class="window-icon">🏆</div>
+                    <div class="window-name">Shell Game</div>
+                    <div class="window-desc">スリーシェルゲーム</div>
+                </a>
+            </div>
+
+            <!-- ═══════ Game 2: Coming Soon ═══════ -->
+            <div class="game-window game-window--soon">
+                <div class="window-titlebar">
+                    <span class="window-dot"></span>
+                    <span class="window-dot"></span>
+                    <span class="window-dot"></span>
+                    <span class="window-title">???</span>
+                </div>
+                <div class="window-body">
+                    <div class="window-icon">🐾</div>
+                    <div class="window-name">???</div>
+                    <div class="window-desc">準備中...</div>
+                    <span class="window-soon-badge">COMING SOON</span>
+                </div>
+            </div>
+
+            <!-- ═══════ Game 3: Coming Soon ═══════ -->
+            <div class="game-window game-window--soon">
+                <div class="window-titlebar">
+                    <span class="window-dot"></span>
+                    <span class="window-dot"></span>
+                    <span class="window-dot"></span>
+                    <span class="window-title">???</span>
+                </div>
+                <div class="window-body">
+                    <div class="window-icon">🐾</div>
+                    <div class="window-name">???</div>
+                    <div class="window-desc">準備中...</div>
+                    <span class="window-soon-badge">COMING SOON</span>
+                </div>
+            </div>
+
+            <!--
+                ═══════ 新しいゲームを追加するテンプレート ═══════
+
+                1. 下の HTML をコピーしてこの上に貼り付け
+                2. game-window- -soon → game-window- -playable に変更
+                3. window-body を <a href="new-game/"> タグに変更
+                4. window-soon-badge を削除
+                5. ドットを window-dot- -close / mini / full に変更
+                6. アイコン・タイトル・説明を書き換え
+
+                <div class="game-window game-window--playable">
+                    <div class="window-titlebar">
+                        <span class="window-dot window-dot--close"></span>
+                        <span class="window-dot window-dot--mini"></span>
+                        <span class="window-dot window-dot--full"></span>
+                        <span class="window-title">new_game.py</span>
+                    </div>
+                    <a href="new-game/" class="window-body">
+                        <div class="window-icon">🎮</div>
+                        <div class="window-name">New Game</div>
+                        <div class="window-desc">ゲームの説明文</div>
+                    </a>
+                </div>
+            -->
+
+        </div>
+    </main>
+
+    <!-- ========== FOOTER ========== -->
+    <footer class="site-footer">
+        <p>🐾 CatHideOuts &copy; 2026</p>
+        <a href="../" class="back-link">← サウンドライブラリへ戻る</a>
+    </footer>
+
+</body>
+</html>
