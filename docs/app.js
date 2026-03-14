@@ -128,7 +128,7 @@ const TRACKS = [
     {
         id: `017_hazure01`,
         title: 'はずれ１',
-        category: 'battle',
+        category: 'sad',
         fileName: '017_hazure01.wav',
     },
 ];
