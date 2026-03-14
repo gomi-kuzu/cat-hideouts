@@ -119,6 +119,18 @@ const TRACKS = [
         category: 'mysterious',
         fileName: '015_yoake01.wav',
     },
+    {
+        id: `016_dasaku02`,
+        title: '駄作２',
+        category: 'battle',
+        fileName: '016_dasaku02.wav',
+    },
+    {
+        id: `017_hazure01`,
+        title: 'はずれ１',
+        category: 'battle',
+        fileName: '017_hazure01.wav',
+    },
 ];
 
 // ──────────────────────────────────────────────
