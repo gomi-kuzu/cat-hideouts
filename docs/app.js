@@ -131,6 +131,12 @@ const TRACKS = [
         category: 'sad',
         fileName: '017_hazure01.wav',
     },
+    {
+        id: `018_shingun01`,
+        title: '進軍１',
+        category: 'adventure',
+        fileName: '018_shingun01.wav',
+    },
 ];
 
 // ──────────────────────────────────────────────
