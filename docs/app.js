@@ -137,6 +137,13 @@ const TRACKS = [
         category: 'adventure',
         fileName: '018_shingun01.wav',
     },
+    {
+        id: `019_osyaberi01`,
+        title: 'おしゃべり１',
+        category: 'calm',
+        fileName: '019_osyaberi01.wav',
+    },
+    
 ];
 
 // ──────────────────────────────────────────────
