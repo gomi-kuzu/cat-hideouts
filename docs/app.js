@@ -143,6 +143,12 @@ const TRACKS = [
         category: 'calm',
         fileName: '019_osyaberi01.wav',
     },
+    {
+        id: `020_fuan02`,
+        title: '不安２',
+        category: 'sad',
+        fileName: '020_fuan02.wav',
+    },
     
 ];
 
