@@ -149,6 +149,12 @@ const TRACKS = [
         category: 'sad',
         fileName: '020_fuan02.wav',
     },
+    {
+        id: `021_kokoromi01`,
+        title: '試み１',
+        category: 'happy',
+        fileName: '021_kokoromi01.wav',
+    },
     
 ];
 
