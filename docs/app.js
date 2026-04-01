@@ -155,6 +155,19 @@ const TRACKS = [
         category: 'happy',
         fileName: '021_kokoromi01.wav',
     },
+        {
+        id: `022_happiness02`,
+        title: 'ハピネス２',
+        category: 'happy',
+        fileName: '022_happiness02.wav',
+    },
+    {
+        id: `023_kokoromi02`,
+        title: '試み２',
+        category: 'happy',
+        fileName: '023_kokoromi02.wav',
+    },
+
     
 ];
 
