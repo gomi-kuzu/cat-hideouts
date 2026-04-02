@@ -167,8 +167,12 @@ const TRACKS = [
         category: 'happy',
         fileName: '023_kokoromi02.wav',
     },
-
-    
+    {
+        id: `024_gimon02`,
+        title: '疑問２',
+        category: 'tension',
+        fileName: '024_gimon02.wav',
+    },  
 ];
 
 // ──────────────────────────────────────────────
