@@ -357,19 +357,33 @@ async function fetchDownloadCounts() {
         renderTracks(currentCategory);
 
         // 各トラックのカウントを更新
+        let totalDownloads = 0;
         TRACKS.forEach(track => {
             const el = document.getElementById(`count-${track.id}`);
             if (el) {
                 const count = countMap[track.fileName];
-                el.textContent = count !== undefined
-                    ? `📥 ${count.toLocaleString()} DL`
-                    : '📥 — DL';
+                if (count !== undefined) {
+                    totalDownloads += count;
+                    el.textContent = `📥 ${count.toLocaleString()} DL`;
+                } else {
+                    el.textContent = '📥 — DL';
+                }
             }
         });
+
+        // トータルダウンロード数を表示
+        const totalEl = document.getElementById('totalDownloads');
+        if (totalEl) {
+            totalEl.textContent = totalDownloads > 0 ? totalDownloads.toLocaleString() : '0';
+        }
 
     } catch (error) {
         console.error('GitHub API 取得エラー:', error);
         setAllCountsTo('—');
+        const totalEl = document.getElementById('totalDownloads');
+        if (totalEl) {
+            totalEl.textContent = '—';
+        }
     }
 }
 
@@ -380,6 +394,10 @@ function setAllCountsTo(value) {
             el.textContent = `📥 ${value} DL`;
         }
     });
+    const totalEl = document.getElementById('totalDownloads');
+    if (totalEl) {
+        totalEl.textContent = value;
+    }
 }
 
 // ──────────────────────────────────────────────

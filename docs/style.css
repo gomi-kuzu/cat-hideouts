@@ -644,6 +644,35 @@ img {
 }
 
 /* ============================================
+   LIBRARY STATS
+   ============================================ */
+.library-stats {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 2rem 1rem 1rem;
+    margin-top: 2rem;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    opacity: 0.7;
+    transition: opacity var(--transition);
+}
+
+.library-stats:hover {
+    opacity: 1;
+}
+
+.stats-label {
+    font-weight: 400;
+}
+
+.stats-count {
+    font-weight: 500;
+    color: var(--text-secondary);
+}
+
+/* ============================================
    ABOUT
    ============================================ */
 .about {
