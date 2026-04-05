@@ -172,7 +172,13 @@ const TRACKS = [
         title: '疑問２',
         category: 'tension',
         fileName: '024_gimon02.wav',
-    },  
+    },
+        {
+        id: `025_fuon01`,
+        title: '不穏１',
+        category: 'tension',
+        fileName: '025_fuon01.wav',
+    },
 ];
 
 // ──────────────────────────────────────────────
