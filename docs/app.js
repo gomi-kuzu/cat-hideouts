@@ -179,6 +179,12 @@ const TRACKS = [
         category: 'tension',
         fileName: '025_fuon01.wav',
     },
+        {
+        id: `026_hibi01`,
+        title: '日々１',
+        category: 'calm',
+        fileName: '026_hibi01.wav',
+    },
 ];
 
 // ──────────────────────────────────────────────
