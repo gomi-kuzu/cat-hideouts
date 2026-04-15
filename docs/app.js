@@ -191,6 +191,12 @@ const TRACKS = [
         category: 'happy',
         fileName: '027_hatsuratsu01.wav',
     },
+        {
+        id: `028_tansaku03`,
+        title: '探索３',
+        category: 'adventure',
+        fileName: '028_tansaku03.wav',
+    },
 ];
 
 // ──────────────────────────────────────────────
