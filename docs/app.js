@@ -197,6 +197,18 @@ const TRACKS = [
         category: 'adventure',
         fileName: '028_tansaku03.wav',
     },
+        {
+        id: `029_bouken02`,
+        title: '冒険２',
+        category: 'adventure',
+        fileName: '029_bouken02.wav',
+    },
+        {
+        id: `030_sabaku01`,
+        title: '砂漠１',
+        category: 'adventure',
+        fileName: '030_sabaku01.wav',
+    },
 ];
 
 // ──────────────────────────────────────────────
