@@ -209,6 +209,12 @@ const TRACKS = [
         category: 'adventure',
         fileName: '030_sabaku01.wav',
     },
+        {
+        id: `031_dasaku03`,
+        title: '駄作３',
+        category: 'mysterious',
+        fileName: '031_dasaku03.wav',
+    },
 ];
 
 // ──────────────────────────────────────────────
