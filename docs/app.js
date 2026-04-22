@@ -368,18 +368,34 @@ function initCategoryFilter() {
 //  GitHub API でダウンロード数取得
 // ──────────────────────────────────────────────
 async function fetchDownloadCounts() {
-    const apiUrl = `https://api.github.com/repos/${CONFIG.githubUser}/${CONFIG.githubRepo}/releases`;
-
     try {
-        const response = await fetch(apiUrl);
+        // GitHub API はデフォルトで 30 件までしか返さないため、ページングで全件取得
+        const perPage = 100;
+        let page = 1;
+        let releases = [];
 
-        if (!response.ok) {
-            console.warn('GitHub API レスポンスエラー:', response.status);
-            setAllCountsTo('—');
-            return;
+        while (true) {
+            const apiUrl = `https://api.github.com/repos/${CONFIG.githubUser}/${CONFIG.githubRepo}/releases?per_page=${perPage}&page=${page}`;
+            const response = await fetch(apiUrl);
+
+            if (!response.ok) {
+                console.warn('GitHub API レスポンスエラー:', response.status);
+                setAllCountsTo('—');
+                return;
+            }
+
+            const batch = await response.json();
+            if (!Array.isArray(batch) || batch.length === 0) {
+                break;
+            }
+
+            releases = releases.concat(batch);
+
+            if (batch.length < perPage) {
+                break;
+            }
+            page += 1;
         }
-
-        const releases = await response.json();
 
         // ファイル名 → ダウンロード数・アップロード日のマップを作成
         const countMap = {};
