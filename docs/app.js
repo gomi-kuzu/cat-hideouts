@@ -215,6 +215,12 @@ const TRACKS = [
         category: 'mysterious',
         fileName: '031_dasaku03.wav',
     },
+        {
+        id: `032_taiji01`,
+        title: '対峙１',
+        category: 'battle',
+        fileName: '032_taiji01.wav',
+    },
 ];
 
 // ──────────────────────────────────────────────
