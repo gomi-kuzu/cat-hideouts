@@ -221,6 +221,12 @@ const TRACKS = [
         category: 'battle',
         fileName: '032_taiji01.wav',
     },
+        {
+        id: `033_kyouran01`,
+        title: '狂乱１',
+        category: 'tension',
+        fileName: '033_kyouran01.wav',
+    },
 ];
 
 // ──────────────────────────────────────────────
