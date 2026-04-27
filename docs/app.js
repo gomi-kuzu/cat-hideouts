@@ -227,6 +227,12 @@ const TRACKS = [
         category: 'tension',
         fileName: '033_kyouran01.wav',
     },
+        {
+        id: `034_noujiru01`,
+        title: '脳汁１',
+        category: 'happy',
+        fileName: '034_noujiru01.wav',
+    },
 ];
 
 // ──────────────────────────────────────────────
