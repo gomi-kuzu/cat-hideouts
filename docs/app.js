@@ -233,6 +233,12 @@ const TRACKS = [
         category: 'happy',
         fileName: '034_noujiru01.wav',
     },
+        {
+        id: `035_fanfare02`,
+        title: 'ファンファーレ２',
+        category: 'happy',
+        fileName: '035_fanfare02.wav',
+    },
 ];
 
 // ──────────────────────────────────────────────
