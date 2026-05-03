@@ -239,6 +239,12 @@ const TRACKS = [
         category: 'happy',
         fileName: '035_fanfare02.wav',
     },
+        {
+        id: `036_kokoromi03`,
+        title: '試み３',
+        category: 'sad',
+        fileName: '036_kokoromi03.wav',
+    },
 ];
 
 // ──────────────────────────────────────────────
