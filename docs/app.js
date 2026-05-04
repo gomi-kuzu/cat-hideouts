@@ -245,6 +245,12 @@ const TRACKS = [
         category: 'sad',
         fileName: '036_kokoromi03.wav',
     },
+        {
+        id: `037_fuon02`,
+        title: '不穏２',
+        category: 'tension',
+        fileName: '037_fuon02.wav',
+    },
 ];
 
 // ──────────────────────────────────────────────
