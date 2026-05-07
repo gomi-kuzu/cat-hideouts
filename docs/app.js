@@ -251,6 +251,12 @@ const TRACKS = [
         category: 'tension',
         fileName: '037_fuon02.wav',
     },
+        {
+        id: `038_mijuku01`,
+        title: '未熟１',
+        category: 'battle',
+        fileName: '038_mijuku01.wav',
+    },
 ];
 
 // ──────────────────────────────────────────────
