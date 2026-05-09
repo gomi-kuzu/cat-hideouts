@@ -257,6 +257,13 @@ const TRACKS = [
         category: 'battle',
         fileName: '038_mijuku01.wav',
     },
+        {
+        id: `039_shingun02`,
+        title: '進軍２',
+        category: 'adventure',
+        fileName: '039_shingun02.wav',
+    },
+
 ];
 
 // ──────────────────────────────────────────────
