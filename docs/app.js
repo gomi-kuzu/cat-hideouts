@@ -263,6 +263,12 @@ const TRACKS = [
         category: 'adventure',
         fileName: '039_shingun02.wav',
     },
+        {
+        id: `040_koukotsu01`,
+        title: '恍惚１',
+        category: 'mysterious',
+        fileName: '040_koukotsu01.wav',
+    },
 
 ];
 
