@@ -269,6 +269,12 @@ const TRACKS = [
         category: 'mysterious',
         fileName: '040_koukotsu01.wav',
     },
+        {
+        id: `041_chill01`,
+        title: 'チル１',
+        category: 'calm',
+        fileName: '041_chill01.wav',
+    },
 
 ];
 
