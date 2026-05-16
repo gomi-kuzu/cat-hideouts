@@ -275,6 +275,12 @@ const TRACKS = [
         category: 'calm',
         fileName: '041_chill01.wav',
     },
+        {
+        id: `042_hushinkan02`,
+        title: '不信感２',
+        category: 'tension',
+        fileName: '042_hushinkan02.wav',
+    },
 
 ];
 
