@@ -281,6 +281,12 @@ const TRACKS = [
         category: 'tension',
         fileName: '042_hushinkan02.wav',
     },
+        {
+        id: `043_tabou01`,
+        title: '多忙１',
+        category: 'calm',
+        fileName: '043_tabou01.wav',
+    },
 
 ];
 
