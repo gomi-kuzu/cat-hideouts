@@ -287,6 +287,12 @@ const TRACKS = [
         category: 'calm',
         fileName: '043_tabou01.wav',
     },
+        {
+        id: `044_taiji02`,
+        title: '対峙２',
+        category: 'battle',
+        fileName: '044_taiji02.wav',
+    },
 
 ];
 
