@@ -293,7 +293,12 @@ const TRACKS = [
         category: 'battle',
         fileName: '044_taiji02.wav',
     },
-
+       {
+        id: `045_doukutsu01`,
+        title: '洞窟１',
+        category: 'adventure',
+        fileName: '045_doukutsu01.wav',
+    },
 ];
 
 // ──────────────────────────────────────────────
