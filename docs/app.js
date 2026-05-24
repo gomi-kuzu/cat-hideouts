@@ -299,6 +299,13 @@ const TRACKS = [
         category: 'adventure',
         fileName: '045_doukutsu01.wav',
     },
+       {
+        id: `046_caravan01`,
+        title: 'キャラバン１',
+        category: 'adventure',
+        fileName: '046_caravan01.wav',
+    },
+
 ];
 
 // ──────────────────────────────────────────────
