@@ -305,7 +305,12 @@ const TRACKS = [
         category: 'adventure',
         fileName: '046_caravan01.wav',
     },
-
+        {
+        id: `047_unga01`,
+        title: '運河１',
+        category: 'adventure',
+        fileName: '047_unga01.wav',
+    },
 ];
 
 // ──────────────────────────────────────────────
