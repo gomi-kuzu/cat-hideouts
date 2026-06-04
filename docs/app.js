@@ -311,6 +311,12 @@ const TRACKS = [
         category: 'adventure',
         fileName: '047_unga01.wav',
     },
+        {
+        id: `048_dasaku04`,
+        title: '駄作４',
+        category: 'tension',
+        fileName: '048_dasaku04.wav',
+    },
 ];
 
 // ──────────────────────────────────────────────
