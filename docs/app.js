@@ -317,6 +317,12 @@ const TRACKS = [
         category: 'tension',
         fileName: '048_dasaku04.wav',
     },
+        {
+        id: `049_chill02`,
+        title: 'チル２',
+        category: 'calm',
+        fileName: '049_chill02.wav',
+    },
 ];
 
 // ──────────────────────────────────────────────
