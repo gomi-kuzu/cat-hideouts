@@ -323,6 +323,13 @@ const TRACKS = [
         category: 'calm',
         fileName: '049_chill02.wav',
     },
+        {
+        id: `050_ongan01`,
+        title: '温顔１',
+        category: 'calm',
+        fileName: '050_ongan01.wav',
+    },
+
 ];
 
 // ──────────────────────────────────────────────
