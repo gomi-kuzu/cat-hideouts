@@ -329,7 +329,12 @@ const TRACKS = [
         category: 'calm',
         fileName: '050_ongan01.wav',
     },
-
+        {
+        id: `051_genkai01`,
+        title: '限界１',
+        category: 'battle',
+        fileName: '051_genkai01.wav',
+    },
 ];
 
 // ──────────────────────────────────────────────
