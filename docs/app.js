@@ -335,6 +335,12 @@ const TRACKS = [
         category: 'battle',
         fileName: '051_genkai01.wav',
     },
+        {
+        id: `052_kokoromi04`,
+        title: '試み４',
+        category: 'tension',
+        fileName: '052_kokoromi04.wav',
+    },
 ];
 
 // ──────────────────────────────────────────────
