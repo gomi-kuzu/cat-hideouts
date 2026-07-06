@@ -341,6 +341,12 @@ const TRACKS = [
         category: 'tension',
         fileName: '052_kokoromi04.wav',
     },
+        {
+        id: `053_noutenki01`,
+        title: '能天気１',
+        category: 'calm',
+        fileName: '053_noutenki01.wav',
+    },
 ];
 
 // ──────────────────────────────────────────────
